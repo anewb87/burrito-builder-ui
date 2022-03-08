@@ -4,10 +4,6 @@ describe('Placing an order flow', () => {
         cy.intercept('GET', 'http://localhost:3001/api/v1/orders',
         { fixture: 'orders.json'})
 
-        // cy.intercept({
-        //     method: 'POST',
-        //     url: 'http://localhost:3001/api/v1/orders'}).as('apiCheck')
-
         cy.intercept('POST', 'http://localhost:3001/api/v1/orders', { fixture: 'newOrder.json'} )
 
         cy.visit('http://localhost:3000')
@@ -54,6 +50,37 @@ describe('Placing an order flow', () => {
             .click()
             .get('[data-testid=cards]')
             .should('have.length', 3)
+    })
 
+    it('Should not make an order if no name or no ingredients selected', () => {
+        cy.get('[data-testid=submit-btn]')
+            .click()
+            .get('[data-testid=cards]')
+            .should('have.length', 2)
+            
+    })
+
+    it('Should not make an order if no ingredients are selected', () => {
+        cy.get('input')
+            .type('Wolverine')
+            .should('have.value', 'Wolverine')
+            .get('[data-testid=submit-btn]')
+            .click()
+            .get('[data-testid=cards]')
+            .should('have.length', 2)
+    })
+
+    it('Should not make an order if no name is input', () => {
+        cy.get('[data-testid=food-btn]')
+        .eq(3)
+        .click()
+        .get('[data-testid=food-btn]')
+        .eq(5)
+        .click()
+        .get('[data-testid=submit-btn]')
+        .click()
+        .get('[data-testid=cards]')
+        .should('have.length', 2)
     })
 });
+
