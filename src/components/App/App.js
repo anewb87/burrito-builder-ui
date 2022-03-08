@@ -19,7 +19,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('inside app', this.state.orders)
     return (
       <main className="App">
         <header>

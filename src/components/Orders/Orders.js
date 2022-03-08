@@ -3,7 +3,6 @@ import OrderCard from '../OrderCard/OrderCard';
 import './Orders.css';
 
 const Orders = ({ orders }) => {
-  console.log('inside orders', orders)
     const orderEls = orders.map(order => {
       return (
         <OrderCard
