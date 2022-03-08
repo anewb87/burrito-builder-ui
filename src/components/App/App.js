@@ -5,17 +5,18 @@ import Orders from '../../components/Orders/Orders';
 import OrderForm from '../../components/OrderForm/OrderForm';
 
 class App extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
-      
+      orders: []
     }
   }
 
-  // componentDidMount() {
-  //   getOrders()
-  //     .catch(err => console.error('Error fetching:', err));
-  // }
+  componentDidMount() {
+    getOrders()
+      .then(data => this.setState({ orders: data}))
+      .catch(err => console.error('Error fetching:', err));
+  }
 
   render() {
     return (
@@ -24,8 +25,7 @@ class App extends Component {
           <h1>Burrito Builder</h1>
           <OrderForm />
         </header>
-
-        {/* <Orders orders={this.state.orders}/> */}
+        <Orders orders={this.state.orders}/>
       </main>
     );
   }
