@@ -17,7 +17,6 @@ const Orders = ({ orders }) => {
   return (
     <div className='order'>
       {orderEls.length ? orderEls : <p>No orders yet!</p>}
-      {/* {orderEls} */}
     </div>
   )
 }
