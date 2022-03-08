@@ -4,9 +4,11 @@ describe('Placing an order flow', () => {
         cy.intercept('GET', 'http://localhost:3001/api/v1/orders',
         { fixture: 'orders.json'})
 
-        cy.intercept({
-            method: 'POST',
-            url: 'http://localhost:3001/api/v1/orders'}).as('apiCheck')
+        // cy.intercept({
+        //     method: 'POST',
+        //     url: 'http://localhost:3001/api/v1/orders'}).as('apiCheck')
+
+        cy.intercept('POST', 'http://localhost:3001/api/v1/orders', { fixture: 'newOrder.json'} )
 
         cy.visit('http://localhost:3000')
     })
@@ -50,8 +52,8 @@ describe('Placing an order flow', () => {
             .should('have.text', 'Order: sofritas, queso fresco')
             .get('[data-testid=submit-btn]')
             .click()
-            .wait('@apiCheck').then((interception) => {
-                assert.isNotNull(interception.response.body, 'Post call has been made')
-            })
+            .get('[data-testid=cards]')
+            .should('have.length', 3)
+
     })
 });
