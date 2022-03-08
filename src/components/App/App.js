@@ -14,11 +14,12 @@ class App extends Component {
 
   componentDidMount() {
     getOrders()
-      .then(data => this.setState({ orders: data}))
+      .then(data => this.setState({ orders: data.orders}))
       .catch(err => console.error('Error fetching:', err));
   }
 
   render() {
+    console.log('inside app', this.state.orders)
     return (
       <main className="App">
         <header>
@@ -33,3 +34,4 @@ class App extends Component {
 
 
 export default App;
+
