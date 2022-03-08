@@ -5,7 +5,6 @@ import './OrderForm.css'
 class OrderForm extends Component {
   constructor(props) {
     super();
-    // this.props = props;
     this.state = {
       name: '',
       ingredients: []
@@ -15,13 +14,14 @@ class OrderForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const newOrder = {
-      id: Date.now(),
-      ...this.state
+    if (this.state.name && this.state.ingredients.length) {
+      const newOrder = {
+        id: Date.now(),
+        ...this.state
+      }
+      this.props.addOrder(newOrder)
+      this.clearInputs();
     }
-
-    this.props.addOrder(newOrder)
-    this.clearInputs();
   }
 
   clearInputs = () => {
