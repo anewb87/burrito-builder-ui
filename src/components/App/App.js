@@ -21,7 +21,8 @@ class App extends Component {
 
   addOrder = (newOrder) => {
     postOrder(newOrder)
-      .then(data => getOrders().then(data => this.setState({ orders: data.orders })))
+      .then(data => this.setState({ orders: [...this.state.orders, data] }))
+      // .then(data => getOrders().then(data => this.setState({ orders: data.orders })))
   }
 
   render() {
@@ -37,6 +38,4 @@ class App extends Component {
   }
 }
 
-
 export default App;
-

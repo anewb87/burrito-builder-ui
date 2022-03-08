@@ -11,7 +11,6 @@ const OrderCard = ({ name, ingredients }) => {
                     return <li>{ingredient}</li>
                 })}
             </ul>
-            {/* <button>🗑</button> */}
         </div>
     )
 }

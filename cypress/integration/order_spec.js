@@ -53,9 +53,5 @@ describe('Placing an order flow', () => {
             .wait('@apiCheck').then((interception) => {
                 assert.isNotNull(interception.response.body, 'Post call has been made')
             })
-
-
-
     })
-
 });
