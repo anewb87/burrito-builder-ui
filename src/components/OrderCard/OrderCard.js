@@ -1,10 +1,10 @@
 import React from 'react'
 import './OrderCard.css'
 
-const OrderCard = ({ id, name, ingredients }) => {
+const OrderCard = ({ name, ingredients }) => {
 
     return (
-        <div className='card'>
+        <div data-testid='cards' className='card'>
             <h3>{name}</h3>
             <ul className='ingredient-list'>
                 {ingredients.map(ingredient => {
