@@ -21,6 +21,7 @@ class App extends Component {
 
   addOrder = (newOrder) => {
     postOrder(newOrder)
+      .then(data => getOrders().then(data => this.setState({ orders: data.orders })))
   }
 
   render() {
